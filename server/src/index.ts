@@ -6,6 +6,10 @@ const start = () =>{
 
     connetDatabase();
 
+    app.get("/" , (req, res) => {
+        res.status(200).send({success:true})
+    })
+
     const PORT = 8000;
 
     app.get ("/" , (req , res ) => {
@@ -16,6 +20,16 @@ const start = () =>{
         console.log("app running successfully");
         
     });
+
+
+    // app.post("/" ,  async ( req , res)  => {
+    //     const userdata = req.body
+
+
+    // })
+
+
+
 }
 start();
 
