@@ -1,10 +1,14 @@
 import express from "express"
 import { connetDatabase } from "./utils/database";
+import { auth } from "./router/User";
 
 const start = () =>{
     const app = express();
+    app.use(express.json())
 
     connetDatabase();
+
+    app.use("/auth" , auth )
 
     app.get("/" , (req, res) => {
         res.status(200).send({success:true})
