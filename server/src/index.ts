@@ -1,10 +1,12 @@
 import express from "express"
 import { connetDatabase } from "./utils/database";
 import { auth } from "./router/User";
+import cors from "cors"
 
 const start = () =>{
     const app = express();
     app.use(express.json())
+    app.use(cors())
 
     connetDatabase();
 
