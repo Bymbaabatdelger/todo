@@ -1,7 +1,8 @@
 import express from "express"
+import cors from "cors"
 import { connetDatabase } from "./utils/database";
 import { auth } from "./router/User";
-import cors from "cors"
+
 
 const start = () =>{
     const app = express();
@@ -26,15 +27,6 @@ const start = () =>{
         console.log("app running successfully");
         
     });
-
-
-    // app.post("/" ,  async ( req , res)  => {
-    //     const userdata = req.body
-
-
-    // })
-
-
 
 }
 start();

@@ -8,9 +8,12 @@ type SingUpType = {
   avatarImage: string;
 };
 
-type RequestBodyType = {
-  body: SingUpType;
-};
+type UserType = {
+  _id: string;
+  username: string;
+  password: string;
+  __v: number;
+}
 
 type LogInType = {
   username: string;
@@ -50,7 +53,7 @@ export const logIn = async (req: Request, res: Response) => {
   try {
     const { username, password }: LogInType = req.body;
 
-    const user: LogInType | null = await UserModel.findOne({ username });
+    const user: UserType | null = await UserModel.findOne({ username });
     console.log(user);
 
     if (!user) {
@@ -63,7 +66,7 @@ export const logIn = async (req: Request, res: Response) => {
           msg: "Username or password incorrect",
         });
       } else {
-        return res.send({ success: true });
+        return res.send({ success: true , user});
       }
     });
   } catch (error) {
