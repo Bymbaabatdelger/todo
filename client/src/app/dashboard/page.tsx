@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import axios from "axios";
 import { SizeEnum, Title } from "../components/Title";
+import Board from "../components/Board";
+import Modal from "../components/Modal";
 
 const Page = () => {
 
@@ -43,12 +45,24 @@ const Page = () => {
 
   }, [])
 
+  const [modal , setModal ] = useState(true)
+
+  const toggleModal = () => {
+    setModal(!modal)
+    console.log(modal);
+    
+  }
+
 
   
    return (
     <div>
     <Title size={SizeEnum.L}>Dashboard</Title>
-    <div>{JSON.stringify(todo, null, 2)}</div>
+    <Board onclick={toggleModal}></Board>
+    {/* <div>{JSON.stringify(todo, null, 2)}</div> */}
+
+    {modal && <Modal onClick={toggleModal} />}
+   
   </div>
    )
 };

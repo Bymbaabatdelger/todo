@@ -34,6 +34,7 @@ const handleSignUp = async(e:any) => {
             return;
         }
         
+        router.push("/login")
         
     } catch (error:any) {
         setError("Invalid request")
