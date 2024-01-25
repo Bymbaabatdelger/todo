@@ -1,6 +1,7 @@
 import { UserModel } from "../model/User";
 import { Request, Response } from "express";
 import bcrypt, { hash } from "bcrypt";
+import jwt  from "jsonwebtoken";
 
 type SingUpType = {
   username: string;
@@ -59,14 +60,19 @@ export const logIn = async (req: Request, res: Response) => {
     if (!user) {
       return res.status(400).send({ success: false, msg: "User not found" });
     }
+
     bcrypt.compare(password, user.password, async function (err, result) {
       if (!result) {
         return res.send({
           success: false,
           msg: "Username or password incorrect",
         });
+
       } else {
-        return res.send({ success: true , user});
+
+        const secretKey = "bat";
+        const token = jwt.sign({...user} , secretKey);
+        return res.send({success:true , token})
       }
     });
   } catch (error) {

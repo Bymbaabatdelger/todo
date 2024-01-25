@@ -22,23 +22,18 @@ const api = "http://localhost:8000/auth/signup"
 const handleSignUp = async(e:any) => {
     e.preventDefault();
 
-    const keys = {
-        username:input.username , 
-        password:input.password,
-        repassword:input.repassword,
-    }
 
 
 
     try {
-        const user = await axios.post(api , {keys});
+        const user = await axios.post(api , {...input});
         console.log(user);
         if(input.password !== input.repassword){
             console.error("password does not match")
             alert("Password does not match")
             return;
         }
-        router.push("/login")
+        
         
     } catch (error:any) {
         setError("Invalid request")

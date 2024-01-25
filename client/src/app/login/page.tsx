@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { SizeEnum, Title } from "../components/Title";
 import { Button } from "../components/Button";
+import jwt from "jsonwebtoken"
 
 export default function Home() {
  
@@ -23,7 +24,7 @@ export default function Home() {
     const {data} = await axios.post( api , {...input});
     console.log(data);
 
-    localStorage.setItem("data" , JSON.stringify(data.user))
+    localStorage.setItem("token" , JSON.stringify(data.token))
 
     router.push("/dashboard")
 
