@@ -10,7 +10,7 @@ const TodoSchema = new mongoose.Schema({
     description : String,
     priority : {
         type: String,
-        enum : ["High" , "Medium " , "Low"]
+        enum : ["High" , "Medium" , "Low"]
     },
     label :String,
     userId :{

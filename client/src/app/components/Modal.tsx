@@ -2,7 +2,16 @@ import { MouseEventHandler, useEffect, useState } from "react";
 import { Button } from "./Button";
 import axios from "axios";
 
-const [input ,  setInput] = useState({
+const api =  "http://localhost:8000/todo"
+
+
+
+
+
+export default function Modal({ onClick}:{onClick:MouseEventHandler}) {
+
+
+  const [input ,  setInput] = useState({
     title:"",
     description:"",
     priority:"",
@@ -10,24 +19,20 @@ const [input ,  setInput] = useState({
     label:"",
 })
 
-const api =  "http://localhost:8000/todo"
-
 const taskHandler = async(e:any) => {
-    e.preventDefalt()
-  try {
-    const res = await axios.post(api , {...input})
-    console.log(res);
-  } catch (error) {
-   
-    console.log(error);
-    
-  }
-   
+  e.preventDefault()
+try {
+  const res = await axios.post(api , {...input})
+  console.log(res);
+} catch (error) {
+ 
+  console.log(error);
+  
+}
+ 
 }
 
 
-
-export default function Modal({ onClick}:{onClick:MouseEventHandler}) {
     return(
         <div className="flex flex-col p-4  gap-2 bg-gray-100 rounded-xl h-fit w-fit">
         <p>Add task</p>
@@ -53,7 +58,7 @@ export default function Modal({ onClick}:{onClick:MouseEventHandler}) {
           <select onChange={(e) => setInput((prev) => ({...prev , priority:e.target.value}))} className="w-full rounded-md">
           <option>choose</option>
             <option>High</option>
-            <option> Medium</option>
+            <option > Medium</option>
             <option>Low</option>
           </select>
         </label>

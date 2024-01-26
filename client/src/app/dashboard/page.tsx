@@ -6,6 +6,8 @@ import axios from "axios";
 import { SizeEnum, Title } from "../components/Title";
 import Board from "../components/Board";
 import Modal from "../components/Modal";
+import Taskbar from "../components/Taskbar";
+import { title } from "process";
 
 const Page = () => {
 
@@ -56,9 +58,16 @@ const Page = () => {
 
   
    return (
-    <div>
-    <Title size={SizeEnum.L}>Dashboard</Title>
-    <Board onclick={toggleModal}></Board>
+    <div className="flex flex-col p-4 h-screen gap-4 bg-gray-100">
+
+      <Taskbar/> 
+      <div className="flex justify-between gap-8">
+      <Board  onclick={toggleModal}></Board>
+      <Board onclick={toggleModal}></Board>
+      <Board onclick={toggleModal}></Board>
+      </div>
+    
+
     {/* <div>{JSON.stringify(todo, null, 2)}</div> */}
 
     {modal && <Modal onClick={toggleModal} />}
